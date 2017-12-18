@@ -88,7 +88,36 @@ a {
   color: inherit;
   outline: 0; }
 
-.test .subtest {
-  color: red; }
+html {
+  width: 100%;
+  height: 100%; }
+  html body {
+    position: relative;
+    width: 100%;
+    height: 100%; }
+
+.slide {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0; }
+  .slide.index-1 {
+    background: red;
+    left: 0; }
+  .slide.index-2 {
+    background: green;
+    left: 100%; }
+  .slide.index-3 {
+    background: blue;
+    left: 200%; }
+  .slide.index-4 {
+    background: yellow;
+    left: 300%; }
+  .slide.index-5 {
+    background: cyan;
+    left: 400%; }
+  .slide.index-6 {
+    background: magenta;
+    left: 500%; }
 
 /*# sourceMappingURL=styles.css.map */

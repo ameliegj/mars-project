@@ -1,0 +1,38 @@
+.slide
+{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    
+    &.index-1
+    {
+        background: red;
+        left: 0;
+    }
+    &.index-2
+    {
+        background: green;
+        left: 100%;
+    }
+    &.index-3
+    {
+        background: blue;
+        left: 200%;
+    }
+    &.index-4
+    {
+        background: yellow;
+        left: 300%;
+    }
+    &.index-5
+    {
+        background: cyan;
+        left: 400%;
+    }
+    &.index-6
+    {
+        background: magenta;
+        left: 500%;
+    }
+}

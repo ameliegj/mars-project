@@ -1,1 +1,1 @@
-import test from './components/test.js'
+import slides from './components/slides.js'
