@@ -130,7 +130,7 @@ const bundle = () =>
 		}))
 }
 
-gulp.task('scripts', function()
+gulp.task('scripts', () =>
 {
 	// Create bundler
 	bundler = browserify({

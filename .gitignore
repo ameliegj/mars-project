@@ -28,6 +28,9 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
+### Editor ###
+.vscode/
+
 ### Node ###
 # Logs
 logs

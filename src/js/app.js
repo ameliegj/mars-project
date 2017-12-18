@@ -1,1 +1,1 @@
-// Import your es6 files
+import test from './components/test.js'
