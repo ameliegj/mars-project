@@ -88,4 +88,7 @@ a {
   color: inherit;
   outline: 0; }
 
+.test .subtest {
+  color: red; }
+
 /*# sourceMappingURL=styles.css.map */
