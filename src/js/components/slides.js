@@ -5,6 +5,7 @@ let isScrolling
 let isScrolled = false
 let isPositive = true
 let deltaScroll = 0
+let blocs
 let floor = 0
 let step = 0
 
@@ -24,31 +25,22 @@ window.addEventListener('mousewheel', (event) =>
     {
         // Get active slide
         const $activeSlide = $slides.find(slide => slide.classList.contains('active'))
-        const $blocsNumber = Array.from($activeSlide.querySelectorAll('.bloc')).length
+        blocs = Array.from($activeSlide.querySelectorAll('.bloc')).length
         step = $slides.indexOf($activeSlide)
 
         // Scroll down
         if (deltaScroll > 0)
         {
             // Below bloc
-            if (floor < $blocsNumber - 1)
+            if (floor < blocs - 1)
             {
-                $activeSlide.style.transform = `translateY(-${++floor * 100}%)`
+                slideDown($activeSlide)
             }
 
             // Right slide
-            else if (floor == $blocsNumber - 1)
+            else if (floor == blocs - 1)
             {
-                
-                // Not last slide
-                if (step < $slides.length - 1)
-                {
-                    $activeSlide.classList.remove('active')
-                    $activeSlide.style.transform = `translateX(-100%) translateY(-${floor * 100}%)`
-                    $slides[step + 1].classList.add('active')
-                    $slides[step + 1].style.transform = `translateX(0%)`
-                    floor = 0
-                }
+                slideRight($activeSlide)
             }
         }
 
@@ -58,21 +50,13 @@ window.addEventListener('mousewheel', (event) =>
             // Uppon bloc
             if (floor > 0)
             {
-                $activeSlide.style.transform = `translateY(-${--floor * window.innerHeight}px)`
+                slideUp($activeSlide)
             }
 
             // Left slide
             else if (floor == 0)
             {
-                // Not first slide
-                if (step > 0)
-                {
-                    floor = $blocsNumber - 1
-                    $activeSlide.classList.remove('active')
-                    $activeSlide.style.transform = `translateX(100%)`
-                    $slides[step - 1].classList.add('active')
-                    $slides[step - 1].style.transform = `translateX(0%) translateY(-${floor * 100}%)`
-                }
+                slideLeft($activeSlide)
             }
         }
 
@@ -83,3 +67,39 @@ window.addEventListener('mousewheel', (event) =>
         }, 1500)
     }
 })
+
+const slideUp = (currentSlide) =>
+{
+    currentSlide.style.transform = `translateY(-${--floor * window.innerHeight}px)`
+}
+
+const slideDown = (currentSlide) =>
+{
+    currentSlide.style.transform = `translateY(-${++floor * 100}%)`
+}
+
+const slideLeft = (currentSlide) =>
+{
+    // Not first slide
+    if (step > 0)
+    {
+        floor = blocs - 1
+        currentSlide.classList.remove('active')
+        currentSlide.style.transform = `translateX(100%)`
+        $slides[step - 1].classList.add('active')
+        $slides[step - 1].style.transform = `translateX(0%) translateY(-${floor * 100}%)`
+    }
+}
+
+const slideRight = (currentSlide) =>
+{
+    // Not last slide
+    if (step < $slides.length - 1)
+    {
+        currentSlide.classList.remove('active')
+        currentSlide.style.transform = `translateX(-100%) translateY(-${floor * 100}%)`
+        $slides[step + 1].classList.add('active')
+        $slides[step + 1].style.transform = `translateX(0%)`
+        floor = 0
+    }
+}
