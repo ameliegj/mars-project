@@ -2,81 +2,88 @@ const $slider = document.querySelector('.slider')
 const $slides = Array.from($slider.querySelectorAll('.slide'))
 
 let isScrolling
+let isScrolled = false
+let isPositive = true
 let deltaScroll = 0
 let floor = 0
+let step = 0
 
 window.addEventListener('mousewheel', (event) =>
 {
     // Update scrolling
-    window.clearTimeout(isScrolling)
-    deltaScroll += event.deltaY
-
-    // Detect scroll stop
-    isScrolling = setTimeout(() =>
+    if ((event.deltaY >= 0) != isPositive)
     {
-        // Get active slide
-        const $activeSlide = $slides.find(slide => slide.classList.contains('active'))
-        console.log(deltaScroll)
-
-        // Scroll down
-        if (deltaScroll > 0)
-        {
-            // Below floor
-            if (floor < Array.from($activeSlide.querySelectorAll('.bloc')).length - 1)
-            {
-                floor++
-                $activeSlide.style.transform = `translateY(-${Math.min(deltaScroll, window.innerHeight)}px)`
-            }
-        }
-
-        // Scoll up
-        else if (deltaScroll < 0)
-        {
-            console.log('up')
-        }
-
-        // Reinit variation
+        isPositive = !isPositive
         deltaScroll = 0
-    }, 75)
+    }
+    deltaScroll += event.deltaY
+    window.clearTimeout(isScrolling)
+
+    // Prevent multiple scroll
+    if (!isScrolled)
+    {
+        // Detect scroll stop
+        isScrolling = setTimeout(() =>
+        {
+            // Get active slide
+            const $activeSlide = $slides.find(slide => slide.classList.contains('active'))
+            const $blocsNumber = Array.from($activeSlide.querySelectorAll('.bloc')).length
+            step = $slides.indexOf($activeSlide)
+
+            // Scroll down
+            if (deltaScroll > window.innerHeight / 10)
+            {
+                // Below bloc
+                if (floor < $blocsNumber - 1)
+                {
+                    $activeSlide.style.transform = `translateY(-${++floor * 100}%)`
+                }
+    
+                // Right slide
+                else if (floor == $blocsNumber - 1)
+                {
+                    
+                    // Not last slide
+                    if (step < $slides.length - 1)
+                    {
+                        $activeSlide.classList.remove('active')
+                        $activeSlide.style.transform = `translateX(-100%) translateY(-${floor * 100}%)`
+                        $slides[step + 1].classList.add('active')
+                        $slides[step + 1].style.transform = `translateX(0%)`
+                        floor = 0
+                    }
+                }
+            }
+    
+            // Scoll up
+            else if (deltaScroll < 0)
+            {
+                // Uppon bloc
+                if (floor > 0)
+                {
+                    $activeSlide.style.transform = `translateY(-${--floor * window.innerHeight}px)`
+                }
+    
+                // Left slide
+                else if (floor == 0)
+                {
+                    // Not first slide
+                    if (step > 0)
+                    {
+                        floor = $blocsNumber - 1
+                        $activeSlide.classList.remove('active')
+                        $activeSlide.style.transform = `translateX(100%)`
+                        $slides[step - 1].classList.add('active')
+                        $slides[step - 1].style.transform = `translateX(0%) translateY(-${floor * 100}%)`
+                    }
+                }
+            }
+
+            isScrolled = true
+            setTimeout(() =>
+            {
+                isScrolled = false
+            }, 1500)
+        }, 25)
+    }
 })
-
-
-
-
-            // // Right slide
-            // else if (floor == Array.from($activeSlide.querySelectorAll('.bloc')).length - 1)
-            // {
-            //     const index = $slides.indexOf($activeSlide)
-
-            //     // Not last slide
-            //     if (index < $slides.length - 1)
-            //     {
-            //         floor = 0
-            //         $activeSlide.classList.remove('active')
-            //         $slides[index + 1].classList.add('active')
-            //         document.body.style.transform = `translateX(-${(index + 1) * 100}vw)`
-            //     }
-            // }
-
-
-            // // Uppon floor
-            // if (floor > 0)
-            // {
-            //     floor--
-            //     $activeSlide.style.transform = `translateY(-${floor * 100}vh)`
-            // }
-
-            // // Left slide
-            // else if (floor == 0)
-            // {
-            //     const index = $slides.indexOf($activeSlide)
-
-            //     // Not first slide
-            //     if (index > 0)
-            //     {
-            //         floor = Array.from($slides[index - 1].querySelectorAll('.bloc')).length - 1
-            //         $activeSlide.classList.remove('active')
-            //         $slides[index - 1].classList.add('active')
-            //         document.body.style.transform = `translateX(-${(index - 1) * 100}vw)`
-            //     }
-            // }
