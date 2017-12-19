@@ -24,8 +24,10 @@ window.addEventListener('mousewheel', (event) =>
     if (!isScrolled)
     {
         // Get active slide
-        const $activeSlide = $slides.find(slide => slide.classList.contains('active'))
-        blocs = Array.from($activeSlide.querySelectorAll('.bloc')).length
+        const $activeSlide = $slides.find($slide => $slide.classList.contains('active'))
+        const $blocs = Array.from($activeSlide.querySelectorAll('.bloc'))
+        const $activeBloc = $blocs.find($bloc => $bloc.classList.contains('active'))
+        blocs = $blocs.length
         step = $slides.indexOf($activeSlide)
 
         // Scroll down
@@ -83,7 +85,7 @@ const slideLeft = (currentSlide) =>
     // Not first slide
     if (step > 0)
     {
-        floor = blocs - 1
+        floor = Array.from($slides[step - 1].querySelectorAll('.bloc')).length - 1
         currentSlide.classList.remove('active')
         currentSlide.style.transform = `translateX(100%)`
         $slides[step - 1].classList.add('active')
