@@ -128,4 +128,27 @@ html {
     .slide .bloc:nth-child(3) {
       background-color: blue; }
 
+body {
+  position: relative; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden; }
+
+img {
+  width: 110%;
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+  z-index: -5; }
+
+p {
+  width: 300px;
+  margin: auto;
+  color: #FFFFFF;
+  z-index: 2; }
+
 /*# sourceMappingURL=styles.css.map */
