@@ -22,68 +22,64 @@ window.addEventListener('mousewheel', (event) =>
     // Prevent multiple scroll
     if (!isScrolled)
     {
-        // Detect scroll stop
-        isScrolling = setTimeout(() =>
+        // Get active slide
+        const $activeSlide = $slides.find(slide => slide.classList.contains('active'))
+        const $blocsNumber = Array.from($activeSlide.querySelectorAll('.bloc')).length
+        step = $slides.indexOf($activeSlide)
+
+        // Scroll down
+        if (deltaScroll > 0)
         {
-            // Get active slide
-            const $activeSlide = $slides.find(slide => slide.classList.contains('active'))
-            const $blocsNumber = Array.from($activeSlide.querySelectorAll('.bloc')).length
-            step = $slides.indexOf($activeSlide)
-
-            // Scroll down
-            if (deltaScroll > window.innerHeight / 10)
+            // Below bloc
+            if (floor < $blocsNumber - 1)
             {
-                // Below bloc
-                if (floor < $blocsNumber - 1)
-                {
-                    $activeSlide.style.transform = `translateY(-${++floor * 100}%)`
-                }
-    
-                // Right slide
-                else if (floor == $blocsNumber - 1)
-                {
-                    
-                    // Not last slide
-                    if (step < $slides.length - 1)
-                    {
-                        $activeSlide.classList.remove('active')
-                        $activeSlide.style.transform = `translateX(-100%) translateY(-${floor * 100}%)`
-                        $slides[step + 1].classList.add('active')
-                        $slides[step + 1].style.transform = `translateX(0%)`
-                        floor = 0
-                    }
-                }
-            }
-    
-            // Scoll up
-            else if (deltaScroll < 0)
-            {
-                // Uppon bloc
-                if (floor > 0)
-                {
-                    $activeSlide.style.transform = `translateY(-${--floor * window.innerHeight}px)`
-                }
-    
-                // Left slide
-                else if (floor == 0)
-                {
-                    // Not first slide
-                    if (step > 0)
-                    {
-                        floor = $blocsNumber - 1
-                        $activeSlide.classList.remove('active')
-                        $activeSlide.style.transform = `translateX(100%)`
-                        $slides[step - 1].classList.add('active')
-                        $slides[step - 1].style.transform = `translateX(0%) translateY(-${floor * 100}%)`
-                    }
-                }
+                $activeSlide.style.transform = `translateY(-${++floor * 100}%)`
             }
 
-            isScrolled = true
-            setTimeout(() =>
+            // Right slide
+            else if (floor == $blocsNumber - 1)
             {
-                isScrolled = false
-            }, 1500)
-        }, 25)
+                
+                // Not last slide
+                if (step < $slides.length - 1)
+                {
+                    $activeSlide.classList.remove('active')
+                    $activeSlide.style.transform = `translateX(-100%) translateY(-${floor * 100}%)`
+                    $slides[step + 1].classList.add('active')
+                    $slides[step + 1].style.transform = `translateX(0%)`
+                    floor = 0
+                }
+            }
+        }
+
+        // Scoll up
+        else if (deltaScroll < 0)
+        {
+            // Uppon bloc
+            if (floor > 0)
+            {
+                $activeSlide.style.transform = `translateY(-${--floor * window.innerHeight}px)`
+            }
+
+            // Left slide
+            else if (floor == 0)
+            {
+                // Not first slide
+                if (step > 0)
+                {
+                    floor = $blocsNumber - 1
+                    $activeSlide.classList.remove('active')
+                    $activeSlide.style.transform = `translateX(100%)`
+                    $slides[step - 1].classList.add('active')
+                    $slides[step - 1].style.transform = `translateX(0%) translateY(-${floor * 100}%)`
+                }
+            }
+        }
+
+        isScrolled = true
+        setTimeout(() =>
+        {
+            isScrolled = false
+        }, 1500)
     }
 })
