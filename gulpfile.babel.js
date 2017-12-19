@@ -147,6 +147,10 @@ gulp.task('scripts', () =>
 
 	// Bundle
 	bundle()
+
+	// Lib
+	gulp.src(`${config.src}/js/lib/*.js`)
+		.pipe(gulp.dest(`${config.build}/js`))
 })
 
 /**********
