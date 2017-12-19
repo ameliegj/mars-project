@@ -37,9 +37,12 @@
         {
             background-color: green;
         }
-        &:nth-child(3)
-        {
-            background-color: blue;
-        }
     }
 }
+
+@import 'components/slide-1.scss';
+@import 'components/slide-2.scss';
+@import 'components/slide-3.scss';
+@import 'components/slide-4.scss';
+@import 'components/slide-5.scss';
+@import 'components/slide-6.scss';
