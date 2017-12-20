@@ -1,16 +1,16 @@
-.slide:nth-child(3)
-{
-    .bloc
-    {
-        &:nth-child(1)
-        {
-            background: url(../assets/img/bg-3-1.jpg);
-            background-size: cover;
-        }
-        &:nth-child(2)
-        {
-            background: url(../assets/img/bg-3-1.jpg);
-            background-size: cover;
-        }
-    }
+.slide:nth-child(3) 
+{ 
+    .bloc 
+    { 
+        &:nth-child(1) 
+        { 
+            background: url(../assets/img/bg-3-1.jpg); 
+            background-size: cover; 
+        } 
+        &:nth-child(2) 
+        { 
+            background: url(../assets/img/bg-3-1.jpg); 
+            background-size: cover; 
+        } 
+    } 
 }

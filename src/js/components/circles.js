@@ -26,7 +26,7 @@ class Circle
         $circle.classList.remove('shown')
     }
 }
-
+ 
 const circle_1 = new Circle(50, 50, 1, 1)
 circle_1.create()
 circle_1.display()

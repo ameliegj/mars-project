@@ -1,5 +1,3 @@
-const $frame = document.querySelector('.frame')
-const $title = $frame.querySelector('.title')
 const $slider = document.querySelector('.slider')
 const $slides = Array.from($slider.querySelectorAll('.slide'))
 
@@ -7,10 +5,9 @@ let isScrolling
 let isScrolled = false
 let isPositive = true
 let deltaScroll = 0
-let move
 let blocs
-let row = 0
-let col = 0
+let floor = 0
+let step = 0
 
 window.addEventListener('mousewheel', (event) =>
 {
@@ -29,22 +26,23 @@ window.addEventListener('mousewheel', (event) =>
         // Get active slide
         const $activeSlide = $slides.find($slide => $slide.classList.contains('active'))
         const $blocs = Array.from($activeSlide.querySelectorAll('.bloc'))
-        const $activeBloc = $blocs[row]
+        const $activeBloc = $blocs.find($bloc => $bloc.classList.contains('active'))
         blocs = $blocs.length
+        step = $slides.indexOf($activeSlide)
 
         // Scroll down
         if (deltaScroll > 0)
         {
             // Below bloc
-            if (row < blocs - 1)
+            if (floor < blocs - 1)
             {
-                slideDown($activeSlide, $activeBloc)
+                slideDown($activeSlide)
             }
 
             // Right slide
-            else if (row == blocs - 1)
+            else if (floor == blocs - 1)
             {
-                slideRight($activeSlide, $activeBloc)
+                slideRight($activeSlide)
             }
         }
 
@@ -52,19 +50,17 @@ window.addEventListener('mousewheel', (event) =>
         else if (deltaScroll < 0)
         {
             // Uppon bloc
-            if (row > 0)
+            if (floor > 0)
             {
-                slideUp($activeSlide, $activeBloc)
+                slideUp($activeSlide)
             }
 
             // Left slide
-            else if (row == 0)
+            else if (floor == 0)
             {
-                slideLeft($activeSlide, $activeBloc)
+                slideLeft($activeSlide)
             }
         }
-
-        typeTitle()
 
         isScrolled = true
         setTimeout(() =>
@@ -74,64 +70,38 @@ window.addEventListener('mousewheel', (event) =>
     }
 })
 
-const slideUp = (currentSlide, currentBloc) =>
+const slideUp = (currentSlide) =>
 {
-    currentSlide.style.transform = `translateY(-${--row * window.innerHeight}px)`
-    currentBloc.classList.remove('active')
-    Array.from(currentSlide.querySelectorAll('.bloc'))[row].classList.add('active')
-    move = 'up'
+    currentSlide.style.transform = `translateY(-${--floor * window.innerHeight}px)`
 }
 
-const slideDown = (currentSlide, currentBloc) =>
+const slideDown = (currentSlide) =>
 {
-    currentSlide.style.transform = `translateY(-${++row * 100}%)`
-    currentBloc.classList.remove('active')
-    Array.from(currentSlide.querySelectorAll('.bloc'))[row].classList.add('active')
-    move = 'down'
+    currentSlide.style.transform = `translateY(-${++floor * 100}%)`
 }
 
-const slideLeft = (currentSlide, currentBloc) =>
+const slideLeft = (currentSlide) =>
 {
     // Not first slide
-    if (col > 0)
+    if (step > 0)
     {
-        col--
-        row = Array.from($slides[col].querySelectorAll('.bloc')).length - 1
+        floor = Array.from($slides[step - 1].querySelectorAll('.bloc')).length - 1
         currentSlide.classList.remove('active')
         currentSlide.style.transform = `translateX(100%)`
-        $slides[col].classList.add('active')
-        $slides[col].style.transform = `translateX(0%) translateY(-${row * 100}%)`
-        currentBloc.classList.remove('active')
-        Array.from($slides[col].querySelectorAll('.bloc'))[row].classList.add('active')
-        move = 'left'
+        $slides[step - 1].classList.add('active')
+        $slides[step - 1].style.transform = `translateX(0%) translateY(-${floor * 100}%)`
     }
 }
 
-const slideRight = (currentSlide, currentBloc) =>
+const slideRight = (currentSlide) =>
 {
     // Not last slide
-    if (col < $slides.length - 1)
+    if (step < $slides.length - 1)
     {
-        col++
         currentSlide.classList.remove('active')
-        currentSlide.style.transform = `translateX(-100%) translateY(-${row * 100}%)`
-        $slides[col].classList.add('active')
-        $slides[col].style.transform = `translateX(0%)`
-        row = 0
-        currentBloc.classList.remove('active')
-        Array.from($slides[col].querySelectorAll('.bloc'))[row].classList.add('active')
-        move = 'right'
-    }
-}
-
-const typeTitle = () =>
-{
-    if (row == 0 && col == 1 && move == 'right')
-    {
-        //$title.classList.add('hidden')
-    }
-    else if (row == 0 && col == 0)
-    {
-        //$title.classList.remove('hidden')
+        currentSlide.style.transform = `translateX(-100%) translateY(-${floor * 100}%)`
+        $slides[step + 1].classList.add('active')
+        $slides[step + 1].style.transform = `translateX(0%)`
+        floor = 0
     }
 }

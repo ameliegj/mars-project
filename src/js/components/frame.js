@@ -6,14 +6,14 @@ const $posA = $frame.querySelector('.pos-a')
 const $posO = $frame.querySelector('.pos-o')
 const posA = 48.856614
 const posO = 2.287592000000018
-
+ 
 setInterval(() =>
 {
     const date = new Date()
     $hours.textContent = date.getHours()
     $minutes.textContent = date.getMinutes()
     $seconds.textContent = date.getSeconds()
-
+ 
     const varA = (Math.floor(Math.random() * 1000) - 500) / 1000000
     const varO = (Math.floor(Math.random() * 1000000000) - 500000000) / 1000000000000000
     $posA.textContent = posA + varA
