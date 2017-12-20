@@ -112,3 +112,8 @@ const t11 = 'According to plans unveiled in September 2016, the first flight to 
 const c11 = new Circle(50, 50, 1, 1, t11)
 c11.create()
 c11.display()
+
+export default slideUp
+export default slideDown
+export default slideLeft
+export default slideRight
