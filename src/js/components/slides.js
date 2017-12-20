@@ -105,3 +105,10 @@ const slideRight = (currentSlide) =>
         floor = 0
     }
 }
+
+import Circle from './circles.js'
+
+const t11 = 'According to plans unveiled in September 2016, the first flight to Mars would take place in 2024. The project, which would be developed thanks to the profits made by SpaceX and the personal wealth of its founder Elon Musk, will eventually lead to the establishment of a permanent colony on Mars.'
+const c11 = new Circle(50, 50, 1, 1, t11)
+c11.create()
+c11.display()
