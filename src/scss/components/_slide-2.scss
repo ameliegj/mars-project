@@ -1,16 +1,27 @@
-.slide:nth-child(2) 
-{ 
-    .bloc 
-    { 
-        &:nth-child(1) 
-        { 
-            background: url(../assets/img/bg-2-1.jpg); 
-            background-size: cover; 
-        } 
-        &:nth-child(2) 
-        { 
-            background: url(../assets/img/bg-2-2.png); 
-            background-size: cover; 
-        } 
-    } 
+.slide:nth-child(2) {
+	.bloc {
+		&:nth-child(1) {
+			background: url(../assets/img/bg-2-1.jpg);
+			background-size: cover;
+		}
+		&:nth-child(2) {
+			background: url(../assets/img/bg-2-2.png);
+			background-size: cover;
+		}
+		.section-info {
+			position: absolute;
+			top: 50%;
+			left: 6%;
+		}
+		.section-info p {
+			color: #fff;
+			padding-top: 10%;
+			font-size: 20px;
+			font-weight: 300;
+		}
+		.section-info p span {
+			font-size: 30px;
+			font-weight: 600;
+		}
+	}
 }
