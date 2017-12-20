@@ -265,11 +265,11 @@ html {
   background-size: cover; }
 
 .slide:nth-child(2) .bloc:nth-child(2) {
-  background: url(../assets/img/bg-2-2.jpg);
+  background: url(../assets/img/bg-2-2.png);
   background-size: cover; }
 
 .slide:nth-child(3) .bloc:nth-child(1) {
-  background: url(../assets/img/bg-3-1.jpg);
+  background: url(../assets/img/bg-3-1.2.png);
   background-size: cover; }
 
 .slide:nth-child(3) .bloc:nth-child(2) {
@@ -280,7 +280,6 @@ html {
   position: absolute;
   width: 40px;
   height: 40px;
-  border: dashed #FFFFFF 2px;
   border-radius: 50%;
   -webkit-transform-origin: 50% 50%;
   -ms-transform-origin: 50% 50%;
@@ -299,14 +298,16 @@ html {
     -webkit-transform: scale(1);
     -ms-transform: scale(1);
     transform: scale(1); }
-    .circle.shown:hover {
-      -webkit-transform: scale(1.25);
-      -ms-transform: scale(1.25);
-      transform: scale(1.25);
-      -webkit-animation: rotate-circle 10s infinite linear;
-      animation: rotate-circle 10s infinite linear;
-      -webkit-animation-delay: 0.25s;
-      animation-delay: 0.25s; }
+    .circle.shown:hover .stick-1 {
+      -webkit-transform: scaleY(1) skew(-20deg);
+      -ms-transform: scaleY(1) skew(-20deg);
+      transform: scaleY(1) skew(-20deg); }
+      .circle.shown:hover .stick-1 .stick-2 {
+        -webkit-transform: scaleX(1) skew(20deg);
+        -ms-transform: scaleX(1) skew(20deg);
+        transform: scaleX(1) skew(20deg); }
+        .circle.shown:hover .stick-1 .stick-2 .text {
+          opacity: 1; }
   .circle::before {
     content: '';
     position: absolute;
@@ -328,21 +329,94 @@ html {
     will-change: opacity, transform; }
   .circle:hover::before {
     opacity: 0.125; }
+  .circle::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: dashed #FFFFFF 2px;
+    -webkit-transform-origin: 50% 50%;
+    -ms-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+    will-change: transform; }
+  .circle:hover::after {
+    -webkit-animation: rotate-circle 10s infinite linear;
+    animation: rotate-circle 10s infinite linear;
+    -webkit-animation-delay: 0.25s;
+    animation-delay: 0.25s; }
+  .circle .stick-1 {
+    position: absolute;
+    left: calc(50% - 1px);
+    bottom: 100%;
+    width: 2px;
+    height: 30px;
+    background-color: #FFFFFF;
+    -webkit-transform-origin: 50% 100%;
+    -ms-transform-origin: 50% 100%;
+    transform-origin: 50% 100%;
+    -webkit-transform: scaleY(0) skew(0);
+    -ms-transform: scaleY(0) skew(0);
+    transform: scaleY(0) skew(0);
+    -webkit-transition: -webkit-transform 0.25s ease-in-out;
+    transition: -webkit-transform 0.25s ease-in-out;
+    -o-transition: transform 0.25s ease-in-out;
+    transition: transform 0.25s ease-in-out;
+    transition: transform 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
+    will-change: transform; }
+    .circle .stick-1 .stick-2 {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 30px;
+      height: 2px;
+      background-color: #FFFFFF;
+      -webkit-transform-origin: 0 0;
+      -ms-transform-origin: 0 0;
+      transform-origin: 0 0;
+      -webkit-transform: scaleX(0) skew(20deg);
+      -ms-transform: scaleX(0) skew(20deg);
+      transform: scaleX(0) skew(20deg);
+      -webkit-transition: -webkit-transform 0.25s ease-in-out;
+      transition: -webkit-transform 0.25s ease-in-out;
+      -o-transition: transform 0.25s ease-in-out;
+      transition: transform 0.25s ease-in-out;
+      transition: transform 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
+      -webkit-transition-delay: 0.25s;
+      -o-transition-delay: 0.25s;
+      transition-delay: 0.25s;
+      will-change: transform; }
+      .circle .stick-1 .stick-2 .text {
+        position: absolute;
+        left: 125%;
+        top: 0;
+        width: 15rem;
+        color: #FFFFFF;
+        font-size: 0.625rem;
+        font-weight: 200;
+        text-align: justify;
+        opacity: 0;
+        -webkit-transition-delay: 0.5s;
+        -o-transition-delay: 0.5s;
+        transition-delay: 0.5s;
+        will-change: opacity; }
 
 @-webkit-keyframes rotate-circle {
   0% {
-    -webkit-transform: scale(1.25) rotateZ(0deg);
-    transform: scale(1.25) rotateZ(0deg); }
+    -webkit-transform: rotateZ(0deg);
+    transform: rotateZ(0deg); }
   100% {
-    -webkit-transform: scale(1.25) rotateZ(360deg);
-    transform: scale(1.25) rotateZ(360deg); } }
+    -webkit-transform: rotateZ(360deg);
+    transform: rotateZ(360deg); } }
 
 @keyframes rotate-circle {
   0% {
-    -webkit-transform: scale(1.25) rotateZ(0deg);
-    transform: scale(1.25) rotateZ(0deg); }
+    -webkit-transform: rotateZ(0deg);
+    transform: rotateZ(0deg); }
   100% {
-    -webkit-transform: scale(1.25) rotateZ(360deg);
-    transform: scale(1.25) rotateZ(360deg); } }
+    -webkit-transform: rotateZ(360deg);
+    transform: rotateZ(360deg); } }
 
 /*# sourceMappingURL=styles.css.map */
