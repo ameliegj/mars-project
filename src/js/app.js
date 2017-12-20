@@ -1,3 +1,3 @@
+import frame from './components/frame.js'
 import slides from './components/slides.js'
-
-//import testParallax from './components/test-parallax.js'
+import circles from './components/circles.js'

@@ -1,0 +1,16 @@
+.slide:nth-child(2)
+{
+    .bloc
+    {
+        &:nth-child(1)
+        {
+            background: url(../assets/img/bg-2-1.jpg);
+            background-size: cover;
+        }
+        &:nth-child(2)
+        {
+            background: url(../assets/img/bg-2-1.jpg);
+            background-size: cover;
+        }
+    }
+}

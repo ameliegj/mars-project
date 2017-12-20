@@ -8,8 +8,22 @@ html
     body
     {
         position: relative;
+        width: 100vw;
+        height: 100vh;
+        font-family: 'Roboto', sans-serif;
         transform: translateX(0);
         transition: transform 1s ease-in-out;
         will-change: transform;
+
+        ::selection
+        {
+            color: #FFFFFF;
+            background: rgb(255, 62, 62);
+        }
+        ::-moz-selection
+        {
+            color: #FFFFFF;
+            background: rgb(255, 62, 62);
+        }
     }
 }
