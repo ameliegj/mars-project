@@ -15,7 +15,7 @@
         transform: scale(1);
  
         &:hover
-        {            
+        {
             .stick-1
             {
                 transform: scaleY(1) skew(-20deg);
@@ -107,18 +107,14 @@
                 left: 125%;
                 top: 0;
                 width: 15rem;
-                color: #FFFFFF;
                 font-size: 0.625rem;
                 font-weight: 200;
                 text-align: justify;
-                opacity: 0;
-                transition-delay: 0.5s;
-                will-change: opacity;
             }
         }
     }
 }
- 
+
 @keyframes rotate-circle
 {
     0% { transform: rotateZ(0deg); }

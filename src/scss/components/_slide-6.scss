@@ -1,0 +1,27 @@
+.slide:nth-child(6)
+{
+    .bloc
+    {
+        &:nth-child(1)
+        {
+            background: url(../assets/img/bg6.png);
+            background-size: cover;
+            background-position: center;
+        }
+        &:nth-child(2)
+        { 
+            background: url(../assets/img/bg0.png);
+            background-size: cover;
+            background-position: center;
+
+            .advice
+            {
+                position: absolute;
+                left: 37.5%;
+                bottom: 50%;
+                font-size: 1.25rem;
+                margin: 1em;
+            }
+        }
+    }
+}

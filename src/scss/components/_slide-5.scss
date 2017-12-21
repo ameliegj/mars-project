@@ -1,0 +1,49 @@
+.slide:nth-child(5)
+{
+    .bloc
+    {
+        &:nth-child(1)
+        {
+            background: url(../assets/img/bg5.png);
+            background-size: cover;
+            background-position: center;
+
+            text-align: center;
+
+            .quote
+            {
+                position: absolute;
+                top: 45%;
+                left: 0;
+                width: 100%;
+                font-size: 5rem;
+
+                .red
+                {
+                    color: #FF2244;
+                }
+                .green
+                {
+                    color: #44FF22;
+                }
+                .blue
+                {
+                    color: #3366CC;
+                }
+            }
+            .author
+            {
+                position: absolute;
+                bottom: 25%;
+                font-size: 2.5rem;
+                width: 100%;
+            }
+        }
+        &:nth-child(2)
+        { 
+            background: url(../assets/img/bg0.png);
+            background-size: cover;
+            background-position: center;
+        }
+    }
+}

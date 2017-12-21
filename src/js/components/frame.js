@@ -10,9 +10,9 @@ const posO = 2.287592000000018
 setInterval(() =>
 {
     const date = new Date()
-    $hours.textContent = date.getHours()
-    $minutes.textContent = date.getMinutes()
-    $seconds.textContent = date.getSeconds()
+    $hours.textContent = `${date.getHours() > 9 ? '' : 0}${date.getHours()}`
+    $minutes.textContent = `${date.getMinutes() > 9 ? '' : 0}${date.getMinutes()}`
+    $seconds.textContent = `${date.getSeconds() > 9 ? '' : 0}${date.getSeconds()}`
  
     const varA = (Math.floor(Math.random() * 1000) - 500) / 1000000
     const varO = (Math.floor(Math.random() * 1000000000) - 500000000) / 1000000000000000

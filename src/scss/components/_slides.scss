@@ -6,7 +6,8 @@
     height: 100vh;
     opacity: 0;
     transform: translate(100%, 0%);
-    transition: opacity 0.75s ease-in-out, transform 0.75s ease-in-out;
+    transition: opacity ease-in-out, transform ease-in-out;//EDIT
+    transition-duration: 0.75s;//EDIT
     transition-delay: 0.75s;
     will-change: opacity, transform;
     z-index: 0;
@@ -32,7 +33,7 @@
 
         &::after 
         { 
-            content: ''; 
+            content: '';
             position: absolute; 
             left: 0; 
             top: 0; 
@@ -40,13 +41,13 @@
             height: 100%; 
             background: #000000; 
             opacity: 0.25; 
-        } 
-    } 
-} 
+        }
+    }
+}
 
-@import 'components/slide-1.scss';
-@import 'components/slide-2.scss';
-@import 'components/slide-3.scss';
-@import 'components/slide-4.scss';
-@import 'components/slide-5.scss';
-@import 'components/slide-6.scss';
+@import 'slide-1.scss';
+@import 'slide-2.scss';
+@import 'slide-3.scss';
+@import 'slide-4.scss';
+@import 'slide-5.scss';
+@import 'slide-6.scss';

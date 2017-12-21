@@ -1,0 +1,18 @@
+.slide:nth-child(4)
+{
+    .bloc
+    {
+        &:nth-child(1)
+        {
+            background: url(../assets/img/bg4.png);
+            background-size: cover;
+            background-position: center;
+        }
+        &:nth-child(2)
+        { 
+            background: url(../assets/img/bg0.png);
+            background-size: cover;
+            background-position: center;
+        }
+    }
+}
